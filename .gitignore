@@ -1,0 +1,32 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# NLTK data directory (downloaded on demand)
+nltk_data/
+
+# Output directory (generated files)
+outputs/
+
+# Virtual environment directory
+venv/
+twitter-env/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE specific files
+.vscode/
+.idea/
+*.iml
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Data file (recommend not committing large data files)
+sentiment140.csv
+*.json # If you were caching API results previously

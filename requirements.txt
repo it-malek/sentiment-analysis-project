@@ -1,0 +1,8 @@
+pandas
+matplotlib
+wordcloud
+tqdm
+torch # Or tensorflow, depending on backend choice
+transformers
+nltk
+sentencepiece # Often required by Hugging Face tokenizers
