@@ -1,39 +1,23 @@
-# Twitter Sentiment Analysis (Adapted for Static Dataset)
+# Sentiment Analysis with RoBERTa
 
 **Author:** Malek Elaghel
 **Date:** May 3, 2025
 **Contact:** [malekelaghel@gmail.com](mailto:malekelaghel@gmail.com)
 
 
-## Introduction & Motivation
+## What it does
 
-This project performs sentiment analysis on text data, aiming to understand public opinion expressed in short texts, originally focusing on Twitter data.
+This project analyzes short texts from **Sentiment140** using a pretrained RoBERTa sentiment model. The workflow separates data loading, NLTK text preprocessing, batch scoring, and visualization into reusable modules.
 
-### Project Origins
+It began with Twitter API collection and exploratory analysis around topics such as COVID, lockdowns, and vaccines. The current version uses a downloadable static dataset, so the workflow can be run without live API access.
 
-This project has evolved over several years, beginning with direct Twitter API v2 data collection around keywords such as "COVID", "lockdown", and "vaccine". The initial pipeline focused on data acquisition and basic NLTK-based text preprocessing — tokenization, stemming, and exploratory visualization via word clouds. As the system matured, it was progressively expanded to include transformer-based sentiment scoring, temporal trend analysis, and keyword subset filtering, demonstrating how production-grade pipelines adapt alongside both research goals and external infrastructure constraints.
-
-### Transition to Static Data
-
-Due to the evolution of Twitter API access policies, obtaining large volumes of live tweets without significant cost is no longer feasible outside an academic context. Consequently, this project has been **adapted** to demonstrate the *intended full analysis pipeline* using a publicly available static dataset: **Sentiment140**.
-
-### Current State & Purpose
-
-This repository showcases a complete sentiment analysis workflow applied to the Sentiment140 dataset. While the data source has changed, the project fulfills the original analytical goals by demonstrating:
-
-* Sophisticated text preprocessing tailored for noisy text.
-* Advanced sentiment analysis using a state-of-the-art Transformer model.
-* Analysis of sentiment trends over time.
-* Extraction and visualization of popular hashtags.
-* Simulated keyword/topic-based analysis on subsets of the data.
-
-The primary purpose now is to serve as a portfolio piece, highlighting skills in Python programming, NLP techniques, data visualization, and software engineering best practices (modular code, configuration management).
+By default, the application selects **2,500 tweets** from the dataset. It produces sentiment distributions, weekly trends, word clouds, and keyword-specific summaries. The model is used for inference; this project does not train or fine-tune RoBERTa. Keyword filtering uses substring matching, and the dataset's 2009 tweets limit what the outputs can say about current public opinion.
 
 ## Features & Analyses
 
 * **Data Loading & Preparation:** Loads data from CSV, handles encoding, parses dates with error handling.
-* **Advanced Text Preprocessing:** Utilizes a custom `SmartTextProcessor` class with NLTK for POS tagging (to preserve context like proper nouns/hashtags), handles URL/mention removal, normalizes elongated words, and cleans irrelevant characters.
-* **Transformer-based Sentiment Analysis:** Employs the `cardiffnlp/twitter-roberta-base-sentiment-latest` model via the Hugging Face `transformers` library for nuanced sentiment classification (positive, neutral, negative). Uses batch processing for efficiency.
+* **Text Preprocessing:** Utilizes a custom `SmartTextProcessor` class with NLTK for POS tagging (to preserve context like proper nouns/hashtags), handles URL/mention removal, normalizes elongated words, and cleans irrelevant characters.
+* **RoBERTa Sentiment Scoring:** Employs the `cardiffnlp/twitter-roberta-base-sentiment-latest` model via the Hugging Face `transformers` library for sentiment classification (positive, neutral, negative). Uses batch processing for efficiency.
 * **Overall Visualizations:**
     * Sentiment Distribution Bar Chart (Overall)
     * Word Cloud (Overall)
@@ -47,7 +31,7 @@ The primary purpose now is to serve as a portfolio piece, highlighting skills in
 * **Pandas:** Data manipulation and loading.
 * **NLTK:** Text preprocessing (tokenization, POS tagging, stopwords).
 * **Transformers (Hugging Face):** Sentiment analysis model loading and inference.
-* **PyTorch (or TensorFlow):** Backend for the Transformers library.
+* **PyTorch:** Backend for the Transformers model.
 * **Matplotlib:** Generating plots.
 * **WordCloud:** Generating word cloud visualizations.
 * **Tqdm:** Progress bars for long processes.
